@@ -1,0 +1,191 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    // View port for Responsive web pages
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Movies to watch before I die
+    // Linking the Style sheet
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
+  body
+    // Linking the JQuery
+    script(src='javascript/jquery-1.12.3.min.js')
+    .container
+      .row
+        center
+          h1#heading Movies to watch before I die
+    hr
+    #main.container
+      .row
+        .col-md-4
+          img#movieImage.img-responsive(alt='Image', src='')
+        .col-md-8
+          ul
+            li#name
+            li#year
+            li#actors
+            li#director
+            li#plot
+            li
+              ul#line
+                li#release
+                li#rating
+                  span.stars
+                li#awards
+            li
+              button#prev.btn.btn-default  Previous
+              button#next.btn.btn-default  Next
+      br
+      br
+      .row
+        .col-md-3
+          // Create Button
+          center
+            a.btn.btn-success(href='#createForm', role='button', data-toggle='modal') Create
+          // Modal
+          #createForm.modal.fade
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(data-dismiss='modal') ×
+                  h2.modal-title Insert Movie Details
+                // End Modal Header
+                .modal-body
+                  form.form-horizontal(method='post',action='curdOpt/add', name='addForm', onsubmit='validate2();' )
+                    .form-group
+                      label.col-lg-2.control-label(for='#inputTitle') Title
+                      .col-lg-10
+                        input#inputTitle.form-control(name='Title', placeholder='Title', type='text')
+                        br
+                      label.col-lg-2.control-label(for='#inputYear') Year
+                      .col-lg-10
+                        input#inputYear.form-control(name='Year', placeholder='Year', type='text')
+                        br
+                      label.col-lg-2.control-label(for='#inputActors') Actors
+                      .col-lg-10
+                        input#inputActors.form-control(name='Actors', placeholder='Actors', type='text')
+                        br
+                      label.col-lg-2.control-label(for='#inputDirector') Director
+                      .col-lg-10
+                        input#inputDirector.form-control(name='Director', placeholder='Director', type='text')
+                        br
+                      label.col-lg-2.control-label(for='#inputReleased') Released on
+                      .col-lg-10
+                        input#inputReleased.form-control(name='Released', placeholder='Released on', type='text')
+                        br
+                      label.col-lg-2.control-label(for='#inputPlot') Plot
+                      .col-lg-10
+                        textarea#inputPlot.form-control(name='Plot', placeholder='Plot')
+                        br
+                      label.col-lg-2.control-label(for='#inputRating') Rating
+                      .col-lg-10
+                        input#inputRating.form-control(name='Rating', placeholder='Rating', type='text')
+                        br
+                      label.col-lg-2.control-label(for='#inputAwards') Awards
+                      .col-lg-10
+                        input#inputAwards.form-control(name='Awards', placeholder='Awards & Nominations', type='text')
+                        br
+                      label.col-lg-2.control-label(for='#inputImage') Upload Image
+                      .col-lg-10
+                        input#inputImage.form-control(type='file', name='imageurl')
+                        br
+                        input(type='submit', value='Submit', name='submit')
+                        br
+                    // Form Group
+                // End Modal Body
+                .modal-footer
+                  // <button class="btn btn-default"  type="button">Submit</button>
+                  button.btn.btn-default(data-dismiss='modal', type='button') Close
+                // End Modal Footer
+              // End Modal Content
+            // End Modal Dialog
+          // End myModal
+        // End Column
+        .col-md-3
+          // Read Button
+          center
+            button#read.btn.btn-primary(type='button')
+              | Read
+        .col-md-3
+          // Update Button
+          center
+            a#updateButton.btn.btn-success(href='#updateForm', role='button', data-toggle='modal')  Update
+          // Modal
+          #updateForm.modal.fade
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(data-dismiss='modal') ×
+                  h2.modal-title Update Movie Details
+                // End Modal Header
+                .modal-body
+                  form.form-horizontal(method='post', name='updForm', action='curdOpt/update', onsubmit='return(validate());')
+                    .form-group
+                      label.col-lg-2.control-label(for='#updateTitle') Title
+                      .col-lg-10
+                        input#updateTitle.form-control(name='Title', placeholder='Title', type='text', readonly='')
+                        br
+                      label.col-lg-2.control-label(for='#updateRating') Rating
+                      .col-lg-10
+                        input#updateRating.form-control(name='updRating', placeholder='Rating', type='text')
+                        br
+                      label.col-lg-2.control-label(for='#updateAwards') Awards
+                      .col-lg-10
+                        input#updateAwards.form-control(name='updAwards', placeholder='Awards & Nominations', type='text')
+                        br
+                      label.col-lg-2.control-label(for='#updateImage') Upload Image
+                      .col-lg-10
+                        input#updateImage.form-control(type='file', name='imageurl')
+                        br
+                      label.col-lg-8.control-label
+                      .col-lg-4
+                        input#updateSubmit(type='submit', value='Submit', name='submit')
+                        br
+                    // Form Group
+                // End Modal Body
+                .modal-footer
+                  // <button class="btn btn-default"  type="button">Submit</button>
+                  button.btn.btn-default(data-dismiss='modal', type='button') Close
+                // End Modal Footer
+              // End Modal Content
+            // End Modal Dialog
+          // End myModal
+        // End Column
+        .col-md-3
+          // Delete Button
+          center
+            a#deleteButton.btn.btn-danger(href='#deleteForm', role='button', data-toggle='modal') Delete
+          #deleteForm.modal.fade
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  button.close(data-dismiss='modal') ×
+                  h2.modal-title Delete Movie Details
+                // End Modal Header
+                .modal-body
+                  form.form-horizontal(method='post', name='deleteForm', action='curdOpt/deletePage')
+                    .form-group
+                      label.col-lg-8.control-label(for='#deleteTitle') Are you sure to delete
+                      .col-lg-4
+                        input#deleteTitle.form-control(name='Title', placeholder='Title', type='text', readonly='')
+                        br
+                      label.col-lg-8.control-label
+                      .col-lg-4
+                        input#deleteSubmit(type='submit', value='Submit', name='submit')
+                        br
+                    // Form Group
+                // End Modal Body
+                .modal-footer
+                  // <button class="btn btn-default"  type="button">Submit</button>
+                  button.btn.btn-default(data-dismiss='modal', type='button') Close
+                // End Modal Footer
+              // End Modal Content
+            // End Modal Dialog
+          // End myModal
+        br
+        br
+        script(src='javascript/script.js')
+        // Linking the Bootstrap js File
+        script(src='javascript/bootstrap.min.js')

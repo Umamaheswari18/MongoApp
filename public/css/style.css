@@ -1,0 +1,50 @@
+#main
+{
+  background-color: #CCC;
+}
+
+
+ul{
+  list-style-type: none;
+}
+
+ul li
+{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+ul#line li{
+  display: inline;
+  list-style-type: none;
+}
+
+#movieImage
+{
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+#line{
+  padding-left: 0;
+}
+
+
+.row
+{
+  padding-bottom: 10px;
+}
+
+
+
+
+span.stars, span.stars span {
+    display: block;
+    background: url('../images/stars.png') 0 -16px repeat-x;
+    width: 160px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
